@@ -51,6 +51,11 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
+      .sold-out {
+        background-color: pink;
+        width: 70px;
+      }
+
       &:hover {
 
         border-color: #999;
