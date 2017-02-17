@@ -26,28 +26,47 @@
       </div>
     </div>
     <div class="col-sm-4">
+    <%if current_user %>
     <div class="add-review">
       <%= form_for([@product, @review]) do |f| %>
+
+ <% if f.object.errors.any? %>
+           <div class="alert alert-danger">
+            <strong>The following errors prevented saving:</strong>
+             <ul>
+             <% f.object.errors.full_messages.each do |error| %>
+               <li><%= error %></li>
+              </ul>
+              </div>
+              <% end %>
+              <%end%>
+
+
+
        <%= f.label :description %>:
        <%= f.text_area :description %><br />
-
         <%= f.label :rating %>:
         <%= select_tag(:rating, options_for_select([[1],[2],[3],[4],[5]])) %>
         <br />
-
         <%= f.submit %>
+      <% end %>
       <% end %>
     </div>
     </div>
-
     <div class="col-sm-8">
     <div class="row">
     <dl class="dl-horizontal">
-      <% @product.reviews.each do |review|%>
+      <% @product.reviews.reverse.each do |review|%>
+      <% if review[:id]%>
         <div class="review">
+
        <dt>  Description: </dt><%=review.description %>
         <br>
        <dt> Rating:  </dt><%=review.rating %>
+       <% if current_user[:id] == review[:user_id]%>
+       <%= button_to "Delete Review", product_review_path(product_id: review[:product_id], id: review[:id]), method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
+       <%end%>
+       <%end%>
         <%end%>
 
         </dl>
