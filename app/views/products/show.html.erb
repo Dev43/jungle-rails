@@ -26,7 +26,20 @@
       </div>
     </div>
     <div class="col-sm-4">
+    <div class="add-review">
+      <%= form_for([@product, @review]) do |f| %>
+       <%= f.label :description %>:
+       <%= f.text_area :description %><br />
+
+        <%= f.label :rating %>:
+        <%= select_tag(:rating, options_for_select([[1],[2],[3],[4],[5]])) %>
+        <br />
+
+        <%= f.submit %>
+      <% end %>
     </div>
+    </div>
+
     <div class="col-sm-8">
     <div class="row">
     <dl class="dl-horizontal">
