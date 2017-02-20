@@ -21,7 +21,12 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><strong><%= @product.price %></strong></dd>
+          <dd><br></dd>
+          <dd><%= link_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary', method: :put do %>
+        <%= fa_icon "shopping-cart", text: 'Buy Me!' %>
+        <% end %>
+        </dd>
         </dl>
       </div>
     </div>

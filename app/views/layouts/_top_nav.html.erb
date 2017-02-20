@@ -31,7 +31,9 @@
   <span class = "navbar-text">Signed in as <%= current_user.name %> </span></li>
 <li> <%= link_to "Logout", '/logout' %></li>
 <% else %>
+ <span class = "navbar-text">
 <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+</span>
 <% end %></li>
       </ul>
 

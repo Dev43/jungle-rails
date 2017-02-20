@@ -29,6 +29,14 @@ cat1 = Category.find_or_create_by! name: 'Apparel'
 cat2 = Category.find_or_create_by! name: 'Electronics'
 cat3 = Category.find_or_create_by! name: 'Furniture'
 
+user1 = User.create(name: "Patrick", email: "therookie43@hotmail.com", password: '123456', password_confirmation: '123456')
+user2 = User.create(name: "Joe", email: "1@13@hotmail.com", password: '123456', password_confirmation: '123456')
+user3 = User.create(name: "Karine", email: "trichboy@.com", password: '123456', password_confirmation: '123456')
+user4 = User.create(name: "Tekjne", email: "fewfewfewfew@hotmail.com", password: '123456', password_confirmation: '123456')
+user5 = User.create(name: "Teldenwj", email: "fewfewfewfewf23d@hotmail.com", password: '123456', password_confirmation: '123456')
+user6 = User.create(name: "Tefewfewldenwj", email: "fewfewfewfewfewfewfewfewf23d@hotmail.com", password: '123456', password_confirmation: '123456')
+
+
 ## PRODUCTS
 
 puts "Re-creating Products ..."
