@@ -4,6 +4,7 @@
 <% end %>
   <header>
     <%= link_to product do %>
+    <% puts product.image%>
       <%= image_tag product.image, alt: product.name %>
       <h4><%= product.name %></h4>
     <% end %>

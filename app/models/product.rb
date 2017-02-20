@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
 
   monetize :price_cents, numericality: true
-  mount_uploader :image, ProductImageUploader
+  # mount_uploader :image, ProductImageUploader
 
   has_many :reviews
   belongs_to :category
