@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
 
 
   def self.authenticate_with_credentials(email, password)
-    @user = User.find_by(email: email).try(:authenticate, password)
-    if(@user)
+    sanitized_email = email.gsub(/\s+/, "").downcase
+
+    if @user = User.find_by(email: sanitized_email).try(:authenticate, password)
       @user
     else
       nil

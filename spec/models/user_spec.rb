@@ -114,6 +114,65 @@ RSpec.describe User, type: :model do
        expect(@new_user).to_not be_valid
     end
 
+  describe '.authenticate_with_credentials' do
+    # examples for this class method here
+    it "should successfully authenticate a returning user" do
+       user = User.create(
+        name: "Patrick",
+        email: "therookie43@hotmail.com",
+        password: '1234',
+        password_confirmation: '1234'
+        )
+
+       expect(User.authenticate_with_credentials(user.email, user.password)).to be_truthy
+    end
+
+    it "should not authenticate due to unrecognized email" do
+        user = User.create(
+          name: "Patrick",
+          email: "therookie43@hotmail.com",
+          password: '1234',
+          password_confirmation: '1234'
+        )
+
+       expect(User.authenticate_with_credentials("NOT_A_VALID_EMAIL@hotmail.com", user.password)).to be_nil
+    end
+
+    it "should not authenticate due to wrong password" do
+        user = User.create(
+          name: "Patrick",
+          email: "therookie43@hotmail.com",
+          password: '1234',
+          password_confirmation: '1234'
+        )
+
+       expect(User.authenticate_with_credentials(user.email, "Diff Password")).to be_nil
+    end
+
+    it "should authenticate with whitespace at beginning and end of email" do
+        user = User.create(
+          name: "Patrick",
+          email: "therookie43@hotmail.com",
+          password: '1234',
+          password_confirmation: '1234'
+        )
+
+       expect(User.authenticate_with_credentials("  therookie43@hotmail.com  ", user.password)).to be_truthy
+    end
+
+    it "should authenticate with case insensitive e-mail" do
+        user = User.create(
+          name: "Patrick",
+          email: "therookie43@hotmail.com",
+          password: '1234',
+          password_confirmation: '1234'
+        )
+
+       expect(User.authenticate_with_credentials("thErookiE43@hotmail.com", user.password)).to be_truthy
+    end
+
+
+  end
 
 
 
