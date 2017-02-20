@@ -38,13 +38,13 @@ user1 = User.create(name: "Teldenwj", email: "fewfewfewfewf23d@hotmail.com", pas
 ## PRODUCTS
 
 puts "Re-creating Products ..."
-
+s3URl = 'https://s3.ca-central-1.amazonaws.com/jungle-assets/'
 Product.destroy_all
 
 cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel1.jpg'),
+  image: open_asset( s3URL + 'apparel1.jpg'),
   quantity: 0,
   price: 64.99
 })
