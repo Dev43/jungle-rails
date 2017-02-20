@@ -16,7 +16,7 @@ before_filter :authorize
       @order = Order.find(order.id)
       @line_items = @order.line_items
       puts @line_items.inspect
-      @line_items.each { |item| item.decrement!(:quantity)}
+      @line_items.each { |item| item.product.decrement!(:quantity, by=item.quantity )}
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
