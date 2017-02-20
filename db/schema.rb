@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 20170216202018) do
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer   "product_id"
-    t.integer   "user_id"
+    t.integer  "product_id"
+    t.integer  "user_id"
     t.string   "description"
-    t.integer   "rating"
+    t.integer  "rating"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -76,7 +76,4 @@ ActiveRecord::Schema.define(version: 20170216202018) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "products", "categories"
-  # add_foreign_key "reviews", "products"
-  # add_foreign_key "reviews", "users"
-
 end
