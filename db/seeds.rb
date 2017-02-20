@@ -38,7 +38,7 @@ user1 = User.create(name: "Teldenwj", email: "fewfewfewfewf23d@hotmail.com", pas
 ## PRODUCTS
 
 puts "Re-creating Products ..."
-@s3URl = 'https://s3.ca-central-1.amazonaws.com/jungle-assets/'
+@s3URL = 'https://s3.ca-central-1.amazonaws.com/jungle-assets/'
 Product.destroy_all
 
 cat1.products.create!({
