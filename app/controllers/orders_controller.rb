@@ -22,7 +22,7 @@ before_filter :authorize
       redirect_to cart_path, error: order.errors.full_messages.first
     end
 
-  rescue Stripe::CardError => e
+    rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
   end
 
