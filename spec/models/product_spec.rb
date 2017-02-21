@@ -4,63 +4,44 @@ RSpec.describe Product, type: :model do
 
   describe 'Validations' do
     # validation tests/examples here
-    it "should successfully save as a full product" do
-      category = Category.create(name: 'Home necessities')
-      @product = Product.create(
-        name: 'TP',
-        description: "Toilet Paper",
-        price_cents: 122,
-        category: category,
-        quantity: 2
-        )
 
+    before(:each) do
+    category = Category.create(name: 'Home necessities')
+    @product = Product.new(
+      name: 'TP',
+      description: "Toilet Paper",
+      price_cents: 122,
+      category: category,
+      quantity: 2
+    )
+    end
+
+    it "should successfully save as a full product" do
+      @product.save
       expect(@product).to be_valid
     end
 
     it "should fail because no category was given" do
-      @product = Product.create(
-        name: 'TP',
-        description: "Toilet Paper",
-        price_cents: 122,
-        quantity: 2,
-        category: nil
-        )
+      @product.category =  nil
+      @product.save
       expect(@product).to_not be_valid
     end
 
     it "should fail because no name was given" do
-      category = Category.create(name: 'Home necessities')
-      @product = Product.create(
-        name: nil,
-        description: "Toilet Paper",
-        price_cents: 122,
-        quantity: 2,
-        category: category
-        )
+      @product.name = nil
+      @product.save
       expect(@product).to_not be_valid
     end
 
     it "should fail because no price was given" do
-      category = Category.create(name: 'Home necessities')
-      @product = Product.create(
-        name: 'TP',
-        description: "Toilet Paper",
-        quantity: 2,
-        category: category,
-        price_cents: nil
-        )
+      @product.price_cents = nil
+      @product.save
       expect(@product).to_not be_valid
     end
 
      it "should fail because no quantity was given" do
-      category = Category.create(name: 'Home necessities')
-      @product = Product.create(
-        name: 'TP',
-        quantity: nil,
-        description: "Toilet Paper",
-        price_cents: 122,
-        category: category
-        )
+      @product.quantity = nil
+      @product.save
       expect(@product).to_not be_valid
     end
 
