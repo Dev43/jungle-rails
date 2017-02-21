@@ -10,6 +10,8 @@ main section.categories-show {
     .product {
       // flex:      1;
       max-width: 260px;
+      background-color: white;
+
       // so that footer within can be positioned absolutely
       position:  relative;
 
@@ -51,6 +53,7 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
+
       .sold-out {
         background-color: pink;
         width: 70px;
@@ -70,10 +73,26 @@ main section.categories-show {
 }
 
 main section.products-show {
+  color: white;
 
   .product-detail {
     img.main-img {
       max-width: 100%;
+    }
+  .new_review {
+    color: #FFCE2B;
+    textarea {
+      color: black;
+    }
+    select {
+      color: black;
+    }
+    input {
+      color: black;
+    }
+  }
+    .review{
+      color: black
     }
   }
 }
