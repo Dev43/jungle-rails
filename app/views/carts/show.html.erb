@@ -51,9 +51,10 @@
     </div>
   </div>
         <% else %>
-        You do not have anything in this cart. QUICK GO BUY STUFF
-
-        <%= link_to "Buy Stuff!", root_path %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+        You do not have anything in this cart. QUICK GO BUY <%= link_to "STUFF!", root_path %>
         <% end %>
+        </div>
+
 
 </section>

@@ -12,8 +12,8 @@
     <% @line_items.each do |item|%>
 
       <li>
-       <div class="col-sm-2">
-        <%= image_tag item.product.image.url, class: 'main-img', size: "110"%>
+       <div class="col-sm-4">
+        <%= image_tag item.product.image.url, class: 'main-img', size: "220"%>
       </div>
         <dt>Name</dt>
           <dd><%= item.product.name %></dd>
@@ -22,12 +22,12 @@
           <dt>Quantity Order</dt>
           <dd><%= item.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= real_price(item.item_price_cents) %></dd>
+          <dd> <strong><%= real_price(item.item_price_cents) %> </strong></dd>
 
       </li>
       <% end %>
     </ul>
-    Final amount of the order for <%= @order.email%> : <%= total_amount(@line_items)%>
+    Final amount of the order for <%= @order.email%> : <strong><%= total_amount(@line_items)%></strong>
 
   </div>
 
