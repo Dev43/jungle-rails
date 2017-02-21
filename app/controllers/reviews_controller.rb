@@ -15,7 +15,7 @@ before_filter :authorize
 
   def destroy
     @product = Product.find(params[:product_id])
-    puts @product.reviews.destroy(params[:id])
+    @product.reviews.destroy(params[:id])
     redirect_to @product
   end
 

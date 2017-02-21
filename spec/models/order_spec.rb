@@ -48,11 +48,9 @@ RSpec.describe Order, type: :model do
         )
       @order.save!
 
-      puts @product1.inspect
 
       @product1.reload
       @product2.reload
-      puts @product1.inspect
       expect(@product1.quantity).to eql 0
       expect(@product2.quantity).to eql 5
     end

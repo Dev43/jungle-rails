@@ -13,7 +13,6 @@ class Admin::CategoriesController < ApplicationController
 
 
   def create
-    puts category_params
     @category = Category.new(category_params)
 
     if @category.save

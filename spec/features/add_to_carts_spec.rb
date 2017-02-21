@@ -21,7 +21,6 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
 
     click_link('Add', match: :first)
     link = find('[href="/cart"]').text
-    puts link
     expect(link).to eql "My Cart (1)"
     save_and_open_screenshot
 
