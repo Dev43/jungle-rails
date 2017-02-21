@@ -57,8 +57,8 @@
   <div class="col-sm-8">
     <div class="row">
       <dl class="dl-horizontal">
-    <div class="well">
         <% @product.reviews.reverse.each do |review|%>
+    <div class="well">
           <% if review[:id]%>
             <div class="review">
             <dt>  Description: </dt>
