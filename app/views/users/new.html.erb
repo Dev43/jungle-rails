@@ -1,12 +1,27 @@
 
-<h1>Signup!</h1>
+<h1 style = "color:white">Signup!</h1>
 
 <%= form_for :user, url: '/users' do |f| %>
 
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
+<dl class="dl-horizontal">
+<div class="well">
+  <dt>Name:</dt>
+  <dd> <%= f.text_field :name %></dd>
+  <br />
+  <dt>Email: </dt>
+  <dd> <%= f.text_field :email %> </dd>
+  <br />
+
+  <dt>Password: </dt>
+  <dd> <%= f.password_field :password %></dd>
+  <br />
+
+  <dt> Reconfirm Password </dt>
+  <dd><%= f.password_field :password_confirmation %></dd>
+  <br>
   <%= f.submit "Submit" %>
 
 <% end %>
+
+</div>
+</dl>
