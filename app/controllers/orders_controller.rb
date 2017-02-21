@@ -13,17 +13,13 @@ before_filter :authorize
     order  = create_order(charge)
 
     if order.valid?
-      @order = Order.find(order.id)
-      @line_items = @order.line_items
-      puts @line_items.inspect
-      @line_items.each { |item| item.decrement!(:quantity)}
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
 
-  rescue Stripe::CardError => e
+    rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
   end
 

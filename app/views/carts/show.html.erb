@@ -32,7 +32,7 @@
       </tfoot>
     </table>
   </div>
-
+  <% if current_user.present? %>
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -46,6 +46,7 @@
           data-email="<%= current_user.email %>"
           data-currency="cad">
         </script>
+      <% end %>
       <% end %>
     </div>
   </div>

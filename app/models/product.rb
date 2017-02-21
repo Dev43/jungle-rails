@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true
   validates :price, presence: true
-  validates :quantity, presence: true
+  validates :quantity, presence: true, numericality: {greater_than_or_equal:  0}
   validates :category, presence: true
 
 end

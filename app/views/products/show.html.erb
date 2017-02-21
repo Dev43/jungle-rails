@@ -5,73 +5,77 @@
   </header>
 
   <article class="product-detail">
-
     <div class="row">
-
       <div class="col-sm-4">
         <%= image_tag @product.image, class: 'main-img' %>
       </div>
-
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd><%= @product.name %></dd>
           <dt>Description</dt>
           <dd><%= @product.description %></dd>
-          <dt>Quantity</dt>
+          <dt>Quantity Left</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
-        </dl>
-      </div>
-    </div>
-    <div class="col-sm-4">
-    <%if current_user %>
-    <div class="add-review">
-      <%= form_for([@product, @review]) do |f| %>
-
- <% if f.object.errors.any? %>
-           <div class="alert alert-danger">
-            <strong>The following errors prevented saving:</strong>
-             <ul>
-             <% f.object.errors.full_messages.each do |error| %>
-               <li><%= error %></li>
-              </ul>
-              </div>
-              <% end %>
-              <%end%>
-
-
-
-       <%= f.label :description %>:
-       <%= f.text_area :description %><br />
-        <%= f.label :rating %>:
-        <%= select_tag(:rating, options_for_select([[1],[2],[3],[4],[5]])) %>
-        <br />
-        <%= f.submit %>
-      <% end %>
-      <% end %>
-    </div>
-    </div>
-    <div class="col-sm-8">
-    <div class="row">
-    <dl class="dl-horizontal">
-      <% @product.reviews.reverse.each do |review|%>
-      <% if review[:id]%>
-        <div class="review">
-
-       <dt>  Description: </dt><%=review.description %>
+          <dd><strong><%= @product.price %></strong></dd>
+          <dd></dd>
+          <% if @product.quantity > 0%>
+          <dd><%= link_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary', method: :put do %>
+        <%= fa_icon "shopping-cart", text: 'Buy Me!' %>
+          <% end %>
+        <% end %>
+        </dd>
         <br>
-       <dt> Rating:  </dt><%=review.rating %>
-       <% if current_user[:id] == review[:user_id]%>
-       <%= button_to "Delete Review", product_review_path(product_id: review[:product_id], id: review[:id]), method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
-       <%end%>
-       <%end%>
-        <%end%>
+    <%if current_user %>
+      <%= form_for([@product, @review]) do |f| %>
+      <dd><h3> Reviews: <h3></dd>
+      <dt><%= f.label :description %></dt>
+      <dd><%= f.text_area :description %> </dd>
+      <br />
+        <dt><%= f.label :rating %></dt>
+      <dd><%= select_tag(:rating, options_for_select([[1],[2],[3],[4],[5]])) %>
+      <br />
+      <br />
 
+      <%= f.submit %>
+      <% if f.object.errors.any? %>
+          <div class="alert alert-danger">
+            <strong>The following errors prevented saving:</strong>
+              <ul>
+                <% f.object.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              </ul>
+          </div>
+      <% end %>
+    <%end%>
+  <% end %>
+
+    <% end %>
+    </dd>
+        </dl>
+  <div class="col-sm-8">
+    <div class="row">
+      <dl class="dl-horizontal">
+    <div class="well">
+        <% @product.reviews.reverse.each do |review|%>
+          <% if review[:id]%>
+            <div class="review">
+            <dt>  Description: </dt>
+            <dd><%=review.description %></dd>
+            <dt> Rating:</dt>
+            <dd> <%=review.rating %>/5 </dd>
+            <% if current_user[:id] == review[:user_id]%>
+             <dd> <%= button_to "Delete", product_review_path(product_id: review[:product_id], id: review[:id]), method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' } %> </dd>
+            <%end%>
+       <%end%>
+    <%end%>
         </dl>
         </div>
         </div>
+        </div>
+    </div>
+      </div>
     </div>
 
   </article>
